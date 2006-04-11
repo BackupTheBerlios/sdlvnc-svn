@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+
+env = Environment()
+
+env.ParseConfig('sdl-config --cflags')
+
+env.Append(CCFLAGS = ['-Wall', '-O2'])
+env.Append(LIBS    = ['SDL'])
+
+sources = ['SDL_vnc.c', 'd3des.c']
+objects = env.Object(sources)
+
+env.StaticLibrary('SDL_vnc', objects)
+env.SharedLibrary('SDL_vnc', source=sources)
