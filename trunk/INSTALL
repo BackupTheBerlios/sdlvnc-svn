@@ -1,8 +1,7 @@
-
 Installation
---------------------------------------------------------------
+--------------
 
-Become superuser for library installation.
+You must become the superuser for library installation.
 
 Linux (gcc):
 
@@ -12,4 +11,3 @@ make
 make install
 ldconfig
 make distclean
-
