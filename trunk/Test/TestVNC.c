@@ -341,7 +341,7 @@ int main ( int argc, char *argv[] )
    SDL_WM_SetCaption("TestVNC", "testvnc");
 
    /* Open vnc connection */
-   vncConnect(&vnc,vnc_server,vnc_port,"hextile,rre,copyrect,raw,cursor","lyoner",10);
+   vncConnect(&vnc, vnc_server, vnc_port, "hextile,rre,copyrect,raw,cursor", vnc_password, 10);
 
    /* Do all the drawing work */
    Draw (screen, &vnc);
