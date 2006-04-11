@@ -1,0 +1,22 @@
+Source: sdlvnc
+Section: libs
+Priority: optional
+Maintainer: Bryan Stillwell <bryan@bokeoa.com>
+Build-Depends: debhelper (>= 4.0.0), libsdl1.2-dev (>= 1.2.5-8)
+Standards-Version: 3.6.1
+
+Package: libsdl-vnc1.2
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: VNC support for Simple DirectMedia Layer 1.2
+ This is a simple library for providing an VNC framebuffer as an
+ SDL surface.
+
+Package: libsdl-vnc1.2-dev
+Section: libdevel
+Architecture: any
+Depends: libsdl-vnc1.2 (= ${Source-Version}), libsdl1.2-dev (>=1.2.5-8)
+Description: development files for SDL 1.2 VNC support
+ This package contains the header files and static libraries required to
+ compile applications that use SDL_vnc.
