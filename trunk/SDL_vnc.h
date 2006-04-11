@@ -242,7 +242,7 @@ Blit current framebuffer to target
 Only blits if framebuffer exists and was updated.
 Updated region is stored in urec (if not NULL).
 
-Returns 1 if the blit occured, 0 otherwise.
+Returns 1 if the blit occurred, 0 otherwise.
 */
 
 DLLINTERFACE int vncBlitFramebuffer(tSDL_vnc *vnc, SDL_Surface *target, SDL_Rect *urec);
@@ -252,7 +252,7 @@ DLLINTERFACE int vncBlitFramebuffer(tSDL_vnc *vnc, SDL_Surface *target, SDL_Rect
 Blit current cursor to target
 
 Blitting is at the actual the cursor position.
-Returns 1 if blit occured, 0 otherwise
+Returns 1 if blit occurred, 0 otherwise
 */
 
 DLLINTERFACE int vncBlitCursor(tSDL_vnc *vnc, SDL_Surface *target, SDL_Rect *trec);
