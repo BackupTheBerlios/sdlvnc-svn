@@ -39,11 +39,11 @@
 /* #define DEBUG */
 
 #ifdef DEBUG
-   #define DBMESSAGE 	printf
-   #define DBERROR 	printf(">>> Error\n"); printf
+   #define DBMESSAGE(format, args...)  { fprintf(stderr, format, ##args); }
+   #define DBERROR(format, args...)  { fprintf(stderr, ">>> Error\n"); fprintf(stderr, format, ##args); }
 #else
-   #define DBMESSAGE 	//
-   #define DBERROR 	printf(">>> Error\n"); printf
+   #define DBMESSAGE(format, args...)  {}
+   #define DBERROR(format, args...)  { fprintf(stderr, ">>> Error\n"); fprintf(stderr, format, ##args); }
 #endif
 
 int WaitForMessage(tSDL_vnc *vnc, unsigned int usecs)
