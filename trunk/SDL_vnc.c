@@ -118,8 +118,8 @@ void GrowUpdateRegion(tSDL_vnc *vnc, SDL_Rect *trec)
 
 int HandleServerMessage(tSDL_vnc *vnc)
 {
-   int i, num_pixels, num_rectangles, num_subrectangles, hx, hy, bx, by, cx, cy, rowindex, bitindex, byteindex;
-   int result, bytes_to_read, bytes_read;
+   int num_rectangles, num_subrectangles, hx, hy, bx, by, cx, cy, rowindex, bitindex, byteindex;
+   int result, bytes_to_read;
    tSDL_vnc_serverMessage serverMessage;
    tSDL_vnc_serverUpdate serverUpdate;
    tSDL_vnc_serverRectangle serverRectangle;
@@ -137,7 +137,6 @@ int HandleServerMessage(tSDL_vnc *vnc)
    tSDL_vnc_serverHextileColored serverHextileColored;
    tSDL_vnc_serverHextileRect serverHextileRect;
    unsigned char *target;
-   unsigned int *uitarget;
    unsigned char *cursormask;
    SDL_Rect trec, srec;
 
@@ -516,7 +515,7 @@ int HandleServerMessage(tSDL_vnc *vnc)
                         vnc->cursorhotspot.x=serverRectangle.x;
                         vnc->cursorhotspot.y=serverRectangle.y;
                         vnc->gotcursor;
-                        //
+
                         bytes_to_read = serverRectangle.width*serverRectangle.height*4;
                         result = Recv(vnc->socket,(unsigned char *)vnc->scratchbuffer->pixels,bytes_to_read,0);
                         if (result==bytes_to_read) {
@@ -719,8 +718,6 @@ int vncConnect(tSDL_vnc *vnc, char *host, int port, char *mode, char *password, 
    unsigned char security_challenge[16];
    unsigned char security_response[16];
    tSDL_vnc_pixelFormat pixel_format;
-   unsigned short usvalue;
-   unsigned int uivalue;
 
    /* Initialize variables */
    vnc->buffer=malloc(VNC_BUFSIZE);
