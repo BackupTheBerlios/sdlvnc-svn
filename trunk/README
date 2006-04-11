@@ -1,4 +1,3 @@
-
 SDL_vnc - SDL VNC Client library
 =============================================================================
 
@@ -8,14 +7,14 @@ Intro
 The SDL_vnc library was created to offer a VNC client system that:
 - is LGPL licensed and can be used in commercial applications
 - integrates with SDL (framebuffer is a SDL surface)
-- IO and processing runs as a thread, so it does not interfere 
+- IO and processing runs as a thread, so it does not interfere
   with a traditional "game loop"
 
 Email aschiffler@appwares.com to contact the author or better check
 author's homepage at http://www.ferzkopp.net for the most up-to-date
 contact information.
 
-This library is licenced under the LGPL, see the file LICENSE for details. 
+This library is licensed under the LGPL, see the file LICENSE for details.
 
 
 Supported Platforms
@@ -28,7 +27,7 @@ TightVNC server running on windows.
 Installation and Test
 ---------------------
 
-To compile the library your need the SDL 1.2 installed from source or 
+To compile the library your need the SDL 1.2 installed from source or
 installed with the 'devel' RPM package. For example on Mandrake, run:
 	urpmi libSDL1.2-devel
 
@@ -39,8 +38,8 @@ The run
 	make install
 	ldconfig
 
-to compile and install the library. The default location for the 
-installation is /usr/local/lib and /usr/local/include. The libary 
+to compile and install the library. The default location for the
+installation is /usr/local/lib and /usr/local/include. The library
 path /usr/local/lib might need to be added to the file
 	/etc/ld.so.conf
 Then run ldconfig again.
@@ -51,20 +50,20 @@ API and Usage
 
 int vncConnect(tSDL_vnc *vnc, char *host, int port, char *mode, char *password, int framerate);
 
-  Connect to VNC server 
+  Connect to VNC server
 
   Parameters
    vnc  = pointer to tSDL_vnc structure
    host = hostname or hostip
    port = port
    mode = submode,submode,...
-    submode =	raw | 
-    		copyrect | 
-    		rre | 
+    submode =	raw |
+    		copyrect |
+    		rre |
     		corre(broken) |
-    		hextile | 
-    		zrle(unimplemented) | 
-    		cursor | 
+    		hextile |
+    		zrle(unimplemented) |
+    		cursor |
     		desktop(unimplemented)
    password = text
    framerate = 1 to 100
@@ -75,7 +74,7 @@ int vncConnect(tSDL_vnc *vnc, char *host, int port, char *mode, char *password, 
    - framerate is the rate in which update requests are send to the server.
 
 
- 
+
 int vncBlitFramebuffer(tSDL_vnc *vnc, SDL_Surface *target, SDL_Rect *urec);
 
  Blit current framebuffer to target
@@ -86,24 +85,24 @@ int vncBlitFramebuffer(tSDL_vnc *vnc, SDL_Surface *target, SDL_Rect *urec);
   urec = pointer to SDL_Rect structure to receive updated area, can be NULL
 
   Notes:
-   - Returns 1 if the blit occured, 0 otherwise.
-   - Only blits if framebuffer exists and was updated. 
+   - Returns 1 if the blit occurred, 0 otherwise.
+   - Only blits if framebuffer exists and was updated.
    - Updated region is stored in urec if it is not NULL.
    - Framebuffer is a RGB surface.
 
 
- 
+
 int vncBlitCursor(tSDL_vnc *vnc, SDL_Surface *target, SDL_Rect *trec);
 
   Blit current cursor to target
 
   Parameters
    vnc = pointer to tSDL_vnc structure
-   target = target surface to blit cursoe to
+   target = target surface to blit cursor to
    trec = pointer to SDL_Rect structure to receive updated area, can be NULL
- 
+
   Notes
-   - Returns 1 if blit occured, 0 otherwise 
+   - Returns 1 if blit occurred, 0 otherwise
    - Blitting is at the trec position.
    - Cursor image is a 32x32 RGBA image (with A set).
 
@@ -117,7 +116,7 @@ SDL_Rect vncCursorHotspot(tSDL_vnc *vnc);
   Parameters
    vnc = pointer to tSDL_vnc structure
 
-  Notes: 
+  Notes:
    - In the returned parameter, only .x and .y are used.
 
 
@@ -147,7 +146,7 @@ void vncDisconnect(tSDL_vnc *vnc);
    vnc = pointer to tSDL_vnc structure
 
   Notes:
-   - Closes socket connection and kills client thread. 
+   - Closes socket connection and kills client thread.
 
 
 Test Program
@@ -164,7 +163,7 @@ Typically one connects to a VNC server like this:
 	./TestVNC -server myserver -password mypass
 
 
-Also see the source code TestVNC.c for sample code on how to 
+Also see the source code TestVNC.c for sample code on how to
 create a simple VNC client.
 
 
@@ -182,7 +181,7 @@ TODO:
 - Implement ClientCutText
 - Implement ZRLE protocol
 - Implement tight protocol and options (zlib,tight,zlibhex)
-  (Anyone hve the specs for this?)
+  (Anyone have the specs for this?)
 - Improved speed and interactive response
   (Implement a threaded socket reader. Check all code for optimizations.)
   ('vncviewer' feels a lot faster and more interactive.)
@@ -193,7 +192,7 @@ TODO:
 Thanks
 ------
 
-Thanks to 'AppWares Development Group' for supporting this project - please 
+Thanks to 'AppWares Development Group' for supporting this project - please
 visit http://www.appwares.com for more information.
 
 
