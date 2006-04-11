@@ -656,7 +656,7 @@ int HandleServerMessage(tSDL_vnc *vnc)
    return 1;
 }
 
-int HandleClientMessage(tSDL_vnc *vnc)
+void HandleClientMessage(tSDL_vnc *vnc)
 {
    SDL_LockMutex(vnc->mutex);
    if (vnc->clientbufferpos>0) {
@@ -664,7 +664,7 @@ int HandleClientMessage(tSDL_vnc *vnc)
    SDL_UnlockMutex(vnc->mutex);
 }
 
-int vncClientThread (void *data)
+void vncClientThread (void *data)
 {
    tSDL_vnc *vnc = (tSDL_vnc *)data;
    unsigned int usvalue;
