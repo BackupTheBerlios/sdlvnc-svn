@@ -993,7 +993,7 @@ int vncConnect(tSDL_vnc *vnc, char *host, int port, char *mode, char *password, 
             } else {
                DBMESSAGE ("Unknown mode.\n");
             }
-            if (newpos=strstr(curpos,",")) {
+            if( (newpos=strstr(curpos, ",")) ) {
                curpos=newpos+1;
             } else {
                *curpos=0;
