@@ -152,7 +152,7 @@ int HandleServerMessage(tSDL_vnc *vnc)
     result = Recv(vnc->socket,&serverUpdate,3,0);
     if (result==3) {
 
-     /* ??? Protocol sais U16, TightVNC server sends U8 */
+     /* ??? Protocol says U16, TightVNC server sends U8 */
      serverUpdate.rectangles=serverUpdate.rectangles & 0x00ff;
      DBMESSAGE ("Number of rectangles: %u (%04x)\n",serverUpdate.rectangles,serverUpdate.rectangles);
 
@@ -241,7 +241,7 @@ int HandleServerMessage(tSDL_vnc *vnc)
            serverCopyrect.x=swap_16(serverCopyrect.x);
            serverCopyrect.y=swap_16(serverCopyrect.y);
            //
-           DBMESSAGE ("Copyrect from %u,%u\n",serverCopyrect.x,serverCopyrect.y);
+           DBMESSAGE ("CopyRect from %u,%u\n",serverCopyrect.x,serverCopyrect.y);
            //
            srec.x=serverCopyrect.x;
            srec.y=serverCopyrect.y;
@@ -256,9 +256,9 @@ int HandleServerMessage(tSDL_vnc *vnc)
            SDL_BlitSurface(vnc->scratchbuffer, NULL, vnc->framebuffer, &trec);
            GrowUpdateRegion(vnc,&trec);
   	   SDL_UnlockMutex(vnc->mutex);
-           DBMESSAGE ("Blitted copyrect pixels.\n");
+           DBMESSAGE ("Blitted CopyRect pixels.\n");
           } else {
-           DBERROR ("Error on copyrect data. Got %i of %i bytes.\n",result,4);
+           DBERROR ("Error on CopyRect data. Got %i of %i bytes.\n",result,4);
            return 0;
           }
          break;
@@ -622,7 +622,7 @@ int HandleServerMessage(tSDL_vnc *vnc)
      //
      DBMESSAGE ("Server text length: %u\n",serverText.length);
      //
-     /* ??? Protocol sais U16 is length to read */
+     /* ??? Protocol says U16 is length to read */
      /* TightVNC server sends a byte on empty string */
      if (serverText.length==0) {
       serverText.length=1;
@@ -873,7 +873,7 @@ int vncConnect(tSDL_vnc *vnc, char *host, int port, char *mode, char *password, 
     return 0;
    }
    
-   /* Server Initialiazation */
+   /* Server Initialization */
    result = Recv(vnc->socket,&vnc->serverFormat,24,0);
    if (result==24) {
      /* Swap format numbers */
@@ -1159,7 +1159,7 @@ int vncClientKeyevent(tSDL_vnc *vnc, unsigned char downflag, unsigned int key)
   vnc->clientbufferpos += 8;
   result = 1;
  } else {
-  DBMESSAGE("CLient buffer full - ignoring keyevent.");
+  DBMESSAGE("Client buffer full - ignoring keyevent.");
  }
  SDL_UnlockMutex(vnc->mutex);
  
@@ -1181,7 +1181,7 @@ int vncClientPointerevent(tSDL_vnc *vnc, unsigned char buttonmask, unsigned shor
   vnc->clientbufferpos += 6;
   result = 1;
  } else {
-  DBMESSAGE("CLient buffer full - ignoring mouseevent.");
+  DBMESSAGE("Client buffer full - ignoring mouseevent.");
  }
  SDL_UnlockMutex(vnc->mutex);
  
