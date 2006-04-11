@@ -3,6 +3,7 @@ Changes in 1.0.1 - Tue Apr 11 2006
 * Fixed spellings in multiple files
 * Switched to 3 spaces for code indentation
 * Fixed bug in the test client where password auth didn't work
+* Added debian/ directory to easily build dpkgs
 
 Changes in 1.0.0 - Mon Apr 11 2005
 * Initial release
